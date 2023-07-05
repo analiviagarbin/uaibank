@@ -8,17 +8,17 @@
 
 /*
 Bem-vindo(a) ao UAIBank!
-O UAIBank √© um sistema banc√°rio que possui cadastro de usu√°rios,
-cadastro de m√∫ltiplos usu√°rios, listagem por id
-transfer√™ncia de saldo entre eles e remo√ß√£o de usu√°rio por ID.
+O UAIBank È um sistema banc·rio que possui cadastro de usu·rios,
+cadastro de m˙ltiplos usu·rios, listagem por id
+transferÍncia de saldo entre eles e remoÁ„o de usu·rio por ID.
 
-Os ID's s√£o gerados automaticamente.
+Os ID's s„o gerados automaticamente.
 
-- Para funcionamento, deve conter na pasta do c√≥digo um arquivo TXT "usuarios.txt"
+- Para funcionamento, deve conter na pasta do cÛdigo um arquivo TXT "usuarios.txt"
 
 Integrantes:
 Ana Flor de O. Stefani 4770143
-Ana L√≠via de M. Garbin 14557394
+Ana LÌvia de M. Garbin 14557394
 
 */
 
@@ -32,25 +32,25 @@ typedef struct
     double saldo_atual;
 } Usuario;
 
-// prot√≥tipo das fun√ß√µes
+// protÛtipo das funÁıes
 
-// exibe a tabela para sele√ß√µo das op√ß√µes do usuario
+// exibe a tabela para seleÁıo das opÁıes do usuario
 void tabela();
 
-// aloca as informa√ß√µes do usuario armazenadas no arquivo para o array
+// aloca as informaÁıes do usuario armazenadas no arquivo para o array
 void carregar_usuario_arquivo();
 
-// faz o inverso de carregar_usuario_arquivo(), atualiza as informa√ß√µes que est√£o no array para o arquivo ao final das altera√ß√µes
+// faz o inverso de carregar_usuario_arquivo(), atualiza as informaÁıes que est„o no array para o arquivo ao final das alteraÁıes
 void carregar_usuario_array();
 
-// verifica√ß√£o de mem√≥ria dispon√≠vel
-// par√¢metro: ponteiro do array, se nulo (mem√≥ria insuficiente)
+// verificaÁ„o de memÛria disponÌvel
+// par‚metro: ponteiro do array, se nulo (memÛria insuficiente)
 void memoria(Usuario *c_memoria);
 
 // adiciona um usuario por vez
 void criar_usuario();
 
-// adiciona a quantidade de usuarios determinada na execu√ß√£o
+// adiciona a quantidade de usuarios determinada na execuÁ„o
 void pesquisar_id();
 
 // realiza a transferencia de saldo entre contador por meio do id
@@ -60,21 +60,21 @@ void transferir();
 void remover_id();
 
 // inicializa um ponteiro do tipo Usuario (struct) apontando para o nulo
-// utilizado durante a execu√ß√£o do codigo no array
+// utilizado durante a execuÁ„o do codigo no array
 Usuario *infos_usuario = NULL;
 
-// variaveis para contagem ao longo do id, v√£o auxiliar na gera√ß√£o automatica de ids
+// variaveis para contagem ao longo do id, v„o auxiliar na geraÁ„o automatica de ids
 // o ultimoId armazena os ids dos ultimos usuarios criados, para que os proximos sejam sempre ultimoId+1
-// iId √© usado como contador
+// iId È usado como contador
 int iId = 0, ultimoId = 0;
 
 int main()
 {
-    // formata√ß√£o para acentua√ß√£o e decimais com ","
+    // formataÁ„o para acentuaÁ„o e decimais com ","
     setlocale(LC_ALL, "Portuguese");
 
     // determina a memoria inicial do array
-    //  vai ser alterada durante a execu√ß√£o
+    //  vai ser alterada durante a execuÁ„o
     infos_usuario = (Usuario *)malloc(0 * sizeof(Usuario));
     memoria(infos_usuario);
 
@@ -110,12 +110,12 @@ int main()
             remover_id();
             break;
         default:
-            printf("\nOp√ß√£o inv√°lida.\n");
+            printf("\nOpÁ„o inv·lida.\n");
             break;
         }
     } while (opcao != 0);
 
-    // atualiza as informa√ß√£es do arquivo com as atualiza√ß√µes feitas no array
+    // atualiza as informaÁ„es do arquivo com as atualizaÁıes feitas no array
     carregar_usuario_array();
 
     // limpa o ponteiro
@@ -128,7 +128,7 @@ void carregar_usuario_arquivo()
     // abre o arquivo para leitura
     FILE *arq_usuario = fopen("usuarios.txt", "r");
 
-    // verifica√ß√£o se o arquivo est√° disponivel
+    // verificaÁ„o se o arquivo est· disponivel
     if (arq_usuario == NULL)
     {
         printf("Erro ao abrir o arquivo\n");
@@ -138,8 +138,8 @@ void carregar_usuario_arquivo()
 
     Usuario novo_usuario;
 
-    // fscanf armazena quantas atribui√ß√µes foram feitas com sucesso
-    // no caso, se for igual a 4 (nome, idade, saldo_atual e id), as atribui√ß√µes estao corretas
+    // fscanf armazena quantas atribuiÁıes foram feitas com sucesso
+    // no caso, se for igual a 4 (nome, idade, saldo_atual e id), as atribuiÁıes estao corretas
     while (fscanf(arq_usuario, "%s %d %lf %d", novo_usuario.nome, &novo_usuario.idade, &novo_usuario.saldo_atual, &novo_usuario.id) == 4)
     {
         iId++;
@@ -166,7 +166,7 @@ void carregar_usuario_array()
 
     for (int i = 0; i < iId; i++)
     {
-        // escreve as informa√ß√µes no arquivo txt com a formata√ß√£o certa
+        // escreve as informaÁıes no arquivo txt com a formataÁ„o certa
         fprintf(arq_usuario, "%s %d %.2f %d\n", infos_usuario[i].nome, infos_usuario[i].idade, infos_usuario[i].saldo_atual, infos_usuario[i].id);
     }
 
@@ -177,7 +177,7 @@ void memoria(Usuario *c_memoria)
 {
     if (c_memoria == NULL)
     {
-        printf("Mem√≥ria insuficiente\n");
+        printf("MemÛria insuficiente\n");
         system("pause");
         exit(1);
     }
@@ -185,18 +185,18 @@ void memoria(Usuario *c_memoria)
 
 void tabela()
 {
-    printf("\n\n(1) - Cadastrar um usu√°rio.\n");
-    printf("(2) - Cadastrar v√°rios usu√°rios.\n");
-    printf("(3) - Buscar usu√°rio por ID.\n");
-    printf("(4) - Fazer transfer√™ncia.\n");
-    printf("(5) - Apagar usu√°rio por ID.\n");
+    printf("\n\n(1) - Cadastrar um usu·rio.\n");
+    printf("(2) - Cadastrar v·rios usu·rios.\n");
+    printf("(3) - Buscar usu·rio por ID.\n");
+    printf("(4) - Fazer transferÍncia.\n");
+    printf("(5) - Apagar usu·rio por ID.\n");
     printf("(0) - Sair.\n\n");
 }
 
 void criar_usuario()
 {
 
-    printf("\nCriar novo usu√°rio:\n");
+    printf("\nCriar novo usu·rio:\n");
 
     Usuario novo_usuario;
 
@@ -204,14 +204,15 @@ void criar_usuario()
 
     fflush(stdin);
 
-    // verifica√ß√£o de erro de aloca√ß√£o
+    // verificaÁ„o de erro de alocaÁ„o
     if (fgets(novo_usuario.nome, sizeof(novo_usuario.nome), stdin) == NULL)
     {
-        printf("Erro ao ler o nome do usu√°rio.\n");
+        printf("Erro ao ler o nome do usu·rio.\n");
         return;
     }
 
-    // verifica se o usu√°rio digitou mais de 100 caracteres e devolve um erro
+
+    // verifica se o usu·rio digitou mais de 100 caracteres e devolve um erro
     int tam = 0;
     tam = strlen(novo_usuario.nome);
     if (tam >= 98)
@@ -220,7 +221,7 @@ void criar_usuario()
         return;
     }
 
-    // limpa as linhas e espa√ßo a mais
+    // limpa as linhas e espaÁo a mais
     char *p;
     if (p = strchr(novo_usuario.nome, '\n'))
     {
@@ -234,40 +235,40 @@ void criar_usuario()
     novo_usuario.nome[strcspn(novo_usuario.nome, "\n")] = '\0';
 
     // recebe a idade do usuario
-    // verifica se a idade √© diferente de um int
+    // verifica se a idade È diferente de um int
     printf("Insira a idade: ");
 
     if (scanf("%d", &novo_usuario.idade) != 1)
     {
-        printf("Erro ao ler a idade do usu√°rio.\n");
+        printf("Erro ao ler a idade do usu·rio.\n");
         return;
     }
 
     // verifica errro de idade menor que 0
     if (novo_usuario.idade <= 0)
     {
-        printf("A idade n√£o pode ser igual ou menor que 0. Tente novamente.\n");
+        printf("A idade n„o pode ser igual ou menor que 0. Tente novamente.\n");
         return;
     }
 
     // recebe o saldo do usuario
 
     printf("Insira o saldo atual: ");
-    // verifica se o saldo √© diferente de um int
+    // verifica se o saldo È diferente de um int
     if (scanf("%lf", &novo_usuario.saldo_atual) != 1)
     {
-        printf("Erro ao ler o saldo do usu√°rio.\n");
+        printf("Erro ao ler o saldo do usu·rio.\n");
         return;
     }
 
     // verifica erro de saldo menor que 0
     if (novo_usuario.saldo_atual <= 0)
     {
-        printf("O saldo n√£o pode ser menor ou igual a 0. Tente novamente.\n");
+        printf("O saldo n„o pode ser menor ou igual a 0. Tente novamente.\n");
         return;
     }
 
-    // processo para cria√ß√£o do id automatico
+    // processo para criaÁ„o do id automatico
     iId++;
 
     if (iId > ultimoId)
@@ -288,22 +289,22 @@ void criar_usuario()
 
     infos_usuario[iId - 1] = novo_usuario;
 
-    printf("\nUsu√°rio %s de ID %d adicionado com sucesso!\n", novo_usuario.nome, novo_usuario.id);
+    printf("\nUsu·rio %s de ID %d adicionado com sucesso!\n", novo_usuario.nome, novo_usuario.id);
 }
 
 void criar_usuarios()
 {
     int qnt;
-    printf("\nEscreva a quantidade de usu√°rios que deseja adicionar: ");
+    printf("\nEscreva a quantidade de usu·rios que deseja adicionar: ");
     scanf("%d", &qnt);
     if (qnt <= 0)
     {
-        printf("Voc√™ deve digitar uma quantidade maior que 0.");
+        printf("VocÍ deve digitar uma quantidade maior que 0.");
         return;
     }
     for (int i = 0; i < qnt; i++)
     {
-        // utiliza a fun√ß√£o de criar usuarios em looping
+        // utiliza a funÁ„o de criar usuarios em looping
         criar_usuario();
     }
 }
@@ -314,15 +315,15 @@ void pesquisar_id()
     int pesq_id;
 
     // recebe o id a ser procurado
-    printf("\nDigite o ID do usu√°rio: ");
+    printf("\nDigite o ID do usu·rio: ");
     scanf("%d", &pesq_id);
 
     // verifica se o id existe
-    // se for menor que 0 n√£o existe
-    // se maior que o ultimo cadastrado tamb√©m nao existe
+    // se for menor que 0 n„o existe
+    // se maior que o ultimo cadastrado tambÈm nao existe
     if (pesq_id > ultimoId || pesq_id <= 0)
     {
-        printf("O ID n√£o existe.");
+        printf("O ID n„o existe.");
         return;
     }
 
@@ -331,13 +332,13 @@ void pesquisar_id()
     {
         if (infos_usuario[i].id == pesq_id)
         {
-            printf("O usu√°rio %s tem saldo de R$%.2lf\n", infos_usuario[i].nome, infos_usuario[i].saldo_atual);
+            printf("O usu·rio %s tem saldo de R$%.2lf\n", infos_usuario[i].nome, infos_usuario[i].saldo_atual);
             return;
         }
     }
 
     // resultado em caso de id's removidos
-    printf("\nUsu√°rio n√£o encontrado.");
+    printf("\nUsu·rio n„o encontrado.");
     return;
 }
 
@@ -345,7 +346,7 @@ void transferir()
 {
     int id_origem, id_destino, index_origem, index_destino;
 
-    // verifica√ß√£o
+    // verificaÁ„o
     int id_origem_encontrado = 0, id_destino_encontrado = 0;
 
     // valor da transferencia
@@ -355,17 +356,17 @@ void transferir()
     scanf("%d", &id_origem);
     printf("\nID de destino: ");
     scanf("%d", &id_destino);
-    printf("\nValor da transfer√™ncia: ");
+    printf("\nValor da transferÍncia: ");
     scanf("%f", &valor);
     if (valor <= 0)
     {
-        printf("O saldo para transfer√™ncia deve ser maior que 0. Tente novamente.\n");
+        printf("O saldo para transferÍncia deve ser maior que 0. Tente novamente.\n");
         return;
     }
 
     if (id_origem > 0 && id_destino > 0)
     {
-        // busca a localiza√ß√£o dos ids no array
+        // busca a localizaÁ„o dos ids no array
         for (int i = 0; i < iId; i++)
         {
             if (infos_usuario[i].id == id_origem)
@@ -383,12 +384,12 @@ void transferir()
 
     if ((id_origem_encontrado == 1) && (id_destino_encontrado == 1))
     {
-        // verifica se o valor est√° disponivel
+        // verifica se o valor est· disponivel
         if (infos_usuario[index_origem].saldo_atual - valor >= 0)
         {
             infos_usuario[index_origem].saldo_atual = infos_usuario[index_origem].saldo_atual - valor;
             infos_usuario[index_destino].saldo_atual = infos_usuario[index_destino].saldo_atual + valor;
-            printf("\nTransfer√™ncia realizada com sucesso.\n");
+            printf("\nTransferÍncia realizada com sucesso.\n");
         }
         else
         {
@@ -397,7 +398,7 @@ void transferir()
     }
     else
     {
-        printf("\nUsu√°rio n√£o encontrado. Tente novamente.\n");
+        printf("\nUsu·rio n„o encontrado. Tente novamente.\n");
     }
 }
 
@@ -405,10 +406,10 @@ void remover_id()
 {
     int id_remover, id_check = 0;
 
-    // armazena a localiza√ß√£o do id a ser removido
+    // armazena a localizaÁ„o do id a ser removido
     int loc_remover;
 
-    printf("\nDigite o ID do usu√°rio a ser removido: ");
+    printf("\nDigite o ID do usu·rio a ser removido: ");
 
     if (scanf("%d", &id_remover) != 1)
     {
@@ -423,7 +424,7 @@ void remover_id()
         {
             if (infos_usuario[i].id == id_remover)
             {
-                // busca a localiza√ß√£o do id no array
+                // busca a localizaÁ„o do id no array
                 loc_remover = i;
                 id_check = 1;
             }
@@ -432,7 +433,7 @@ void remover_id()
 
     if (id_check == 1)
     {
-        // move as informa√ß√µes uma posi√ß√£o para a esquerda da localiza√ß√£o at√© o contador do id
+        // move as informaÁıes uma posiÁ„o para a esquerda da localizaÁ„o atÈ o contador do id
         for (int i = loc_remover; i < iId; i++)
         {
             infos_usuario[i] = infos_usuario[i + 1];
@@ -451,11 +452,11 @@ void remover_id()
             memoria(infos_usuario);
         }
 
-        printf("Usu√°rio removido com sucesso!\n");
+        printf("Usu·rio removido com sucesso!\n");
     }
     else
     {
-        // usuario j√° removido ou n√£o existente
-        printf("Usu√°rio n√£o encontrado.\n");
+        // usuario j· removido ou n„o existente
+        printf("Usu·rio n„o encontrado.\n");
     }
 }
